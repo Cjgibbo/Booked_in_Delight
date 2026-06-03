@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You've Been Selected</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0a0c;
+    --bg-card: #111114;
+    --bg-accent: #1a1a1f;
+    --gold: #c9a84c;
+    --gold-dim: #8a7234;
+    --rose: #8b3a4a;
+    --cream: #e8e0d0;
+    --cream-dim: #9a9488;
+    --white: #f0ece4;
+    --red: #c0392b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--cream);
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 30%, #1a1418 0%, var(--bg-deep) 70%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(201, 168, 76, 0.015) 2px,
+      rgba(201, 168, 76, 0.015) 4px
+    );
+    pointer-events: none;
+  }
+
+  .confidential {
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeDown 1s ease 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeDown 1s ease 0.6s forwards;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.55em;
+    margin-top: 0.3em;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeDown 1s ease 0.9s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    opacity: 0;
+    animation: fadeDown 1s ease 1.5s forwards, pulse 2s ease-in-out 2.5s infinite;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 5rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .section p {
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--cream);
+  }
+
+  .section p.dim {
+    color: var(--cream-dim);
+    font-size: 0.85rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    text-align: center;
+    padding: 3rem 0;
+    position: relative;
+  }
+
+  .divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .divider span {
+    background: var(--bg-deep);
+    padding: 0 1.5rem;
+    position: relative;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 2px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.04), transparent);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .pull-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-style: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  /* STAT CARDS */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-card .label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* BOOK CARD */
+  .book-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-card::before {
+    content: 'NOW READING';
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--gold);
+    color: var(--bg-deep);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    padding: 0.4rem 1rem;
+  }
+
+  .book-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+
+  .book-card .author {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  /* ROSE CEREMONY */
+  .ceremony-section {
+    background: linear-gradient(180deg, var(--bg-deep), #10080c, var(--bg-deep));
+    padding: 5rem 2rem;
+  }
+
+  .ceremony-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .bookmark-visual {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .bookmark {
+    width: 28px;
+    height: 80px;
+    background: linear-gradient(180deg, var(--rose), #5a1a28);
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .bookmark::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 12px solid var(--bg-deep);
+  }
+
+  .bookmark:hover {
+    transform: translateY(-8px);
+  }
+
+  .bookmark.gold-pick {
+    background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+  }
+
+  /* SNACK SECTION */
+  .snack-disclaimer {
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px dashed rgba(201, 168, 76, 0.2);
+    margin: 2rem 0;
+    font-size: 0.8rem;
+    color: var(--cream-dim);
+  }
+
+  .snack-disclaimer strong {
+    color: var(--gold);
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  /* FINAL CTA */
+  .final {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: radial-gradient(ellipse at 50% 70%, #1a1418 0%, var(--bg-deep) 70%);
+  }
+
+  .final h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .final h2 span {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .final p {
+    max-width: 500px;
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    margin-bottom: 1rem;
+  }
+
+  .final-stamp {
+    margin-top: 3rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 0.75rem 2rem;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.6rem;
+    color: rgba(154, 148, 136, 0.4);
+    letter-spacing: 0.2em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 500px) {
+    .stats { grid-template-columns: 1fr; }
+    .section { padding: 3.5rem 1.5rem; }
+    .bookmark { width: 22px; height: 60px; }
+    .bookmark::after {
+      border-left-width: 11px;
+      border-right-width: 11px;
+      border-bottom-width: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="confidential">Classification: Need-To-Know Basis</div>
+  <h1>
+    Jamie.
+    <span>You've Been Selected.</span>
+  </h1>
+  <div class="hero-sub">Delight Public Library &mdash; Book Club Division</div>
+  <div class="scroll-hint">&darr; Scroll to accept your fate &darr;</div>
+</section>
+
+<!-- OPENING -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 001</div>
+  <h2>Let's Be Honest</h2>
+  <p>You reached out. You asked the question. You already knew the answer. That's not a coincidence &mdash; that's instinct. The same instinct that tells you the last 10 minutes of a baking timer are the longest minutes on Earth, and that The Challenge has been robbed of an Emmy every single year.</p>
+  <p>This is your formal recruitment briefing. Read it. Don't skim. There will not be a second invitation.</p>
+  <p class="dim">(There might be a second invitation. But it won't feel as special.)</p>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- THE FIRST READ -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 002</div>
+  <h2>Your First Assignment</h2>
+  <p>Every great alliance starts with a shared mission. This one starts with a book.</p>
+
+  <div class="book-card">
+    <h3>How to Read a Book</h3>
+    <div class="author">Monica Wood</div>
+  </div>
+
+  <p>Yes, that's the real title. No, it's not a personal attack. It's the kind of book that makes you rethink what a book club even is &mdash; which is exactly the point.</p>
+  <p class="dim">Think of it as the appetizer. The soufflé hasn't even gone in yet.</p>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- THE BOOKMARK CEREMONY -->
+<section class="ceremony-section">
+  <div class="ceremony-inner fade-in">
+    <div class="section-label">Briefing &mdash; 003</div>
+    <h2>The Bookmark Ceremony</h2>
+    <p>Forget algorithms. Forget Goodreads suggestions from 2019. Here, book selection happens the way it should &mdash; a blind draw. Everyone puts a pick in. A bookmark gets pulled.</p>
+    <p>Think Love Island, but instead of choosing someone who ghosted their ex, you're choosing a novel that might keep you up until 3 AM on a Tuesday.</p>
+
+    <div class="bookmark-visual">
+      <div class="bookmark"></div>
+      <div class="bookmark"></div>
+      <div class="bookmark gold-pick"></div>
+      <div class="bookmark"></div>
+      <div class="bookmark"></div>
+      <div class="bookmark"></div>
+      <div class="bookmark"></div>
+    </div>
+
+    <p class="dim" style="text-align:center; margin-top: 1rem;">Your bookmark could be next. Accept it.</p>
+  </div>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- THE DATA -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 004</div>
+  <h2>The Numbers Don't Lie</h2>
+  <p>We ran the data. By "we" I mean I asked. By "data" I mean the librarian told me things and I believed her.</p>
+
+  <div class="stats">
+    <div class="stat-card">
+      <span class="number">1×</span>
+      <span class="label">Meetings per week</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">100%</span>
+      <span class="label">Weeks someone loses sleep finishing</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">∞</span>
+      <span class="label">Opinions held firmly</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">0</span>
+      <span class="label">Alcohol served (unfortunately)</span>
+    </div>
+  </div>
+
+  <p class="dim">Meeting location: the library. Time: TBA. Dress code: literate.</p>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- WHAT ACTUALLY HAPPENS -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 005</div>
+  <h2>What Actually Happens Here</h2>
+  <p>People showed up expecting small talk. What they got was community. Real conversations &mdash; the kind where someone says something funny, then someone says something deep, and then you realize you've been there an hour longer than planned.</p>
+  <p>Acquaintances walked in. Actual friends walked out.</p>
+  <p>That's not a marketing line. That's what happened.</p>
+
+  <div class="pull-quote">
+    <p>&ldquo;Let me tell you &mdash; the funny, deep conversations that happen are not to be missed. We are technically the talk of the town. So come join.&rdquo;</p>
+    <cite>Brandi &mdash; The Librarian, Delight Public Library</cite>
+  </div>
+
+  <p class="dim">When the librarian personally vouch&shy;es for it, you don't ask follow-up questions. You show up.</p>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- THE UNSPOKEN -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 006</div>
+  <h2>The Part Nobody Warns You About</h2>
+  <p>You'll stay up too late. Not because you have to &mdash; because the book won't let you stop. Every week someone falls in love with a book they didn't pick, didn't expect, didn't see coming. That's the whole point.</p>
+  <p>And the funniest moment in the club's history?</p>
+  <p style="text-align: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); padding: 1.5rem 0;">You wouldn't believe it if I told you. 🫣</p>
+  <p class="dim">Which means you need to be there for the next one.</p>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- SNACK INTEL -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 007</div>
+  <h2>On the Subject of Provisions</h2>
+  <p>There's no bar. We acknowledge this. But people bring snacks. And Jamie &mdash; you literally bake. You could walk in there with a lemon pound cake and become a legend on day one. That's not pressure. That's just math.</p>
+
+  <div class="snack-disclaimer">
+    <strong>Official Beverage &amp; Snack Status</strong>
+    No alcohol served. Snacks are member-contributed and wildly inconsistent.<br>
+    This is both a problem and an opportunity. You are the opportunity.
+  </div>
+</section>
+
+<div class="divider"><span>&#9830;</span></div>
+
+<!-- THIS IS YOUR ELIMINATION ROUND -->
+<section class="section fade-in">
+  <div class="section-label">Briefing &mdash; 008</div>
+  <h2>This Is Your Elimination Round</h2>
+  <p>On The Challenge, you don't get to sit on the couch and watch. You're either in the arena or you're on a flight home.</p>
+  <p>This is the same thing. Except the arena is air-conditioned, the competition is a paperback, and the only elimination is self-imposed regret when you hear about the conversation you missed.</p>
+  <p>Nobody gets voted off. But you do have to vote yourself in.</p>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <h2 class="fade-in">So, Jamie.<br><span>Are you in?</span></h2>
+  <p class="fade-in">Weekly meetings. One book at a time. Deep conversations that are apparently the talk of the town. Friendships that started as acquaintances. And at least one moment per month that nobody would believe.</p>
+  <p class="fade-in">You asked if I was joining. I'm asking you back.</p>
+  <p class="fade-in" style="color: var(--white); font-weight: 600; margin-top: 1rem;">Bring a book pick. Bring a baked good. Show up.</p>
+  <div class="final-stamp fade-in">Delight Public Library &bull; Book Club &bull; Accepting Applications</div>
+</section>
+
+<footer>
+  Prepared with an unreasonable amount of effort by someone who was just asked about a book club
+</footer>
+
+<script>
+  // Scroll-triggered fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
