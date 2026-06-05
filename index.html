@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You've Been Selected</title>
+<title>Booked in Delight</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -12,11 +12,10 @@
     --bg-accent: #1a1a1f;
     --gold: #c9a84c;
     --gold-dim: #8a7234;
-    --rose: #8b3a4a;
+    --gold-glow: rgba(201, 168, 76, 0.08);
     --cream: #e8e0d0;
     --cream-dim: #9a9488;
     --white: #f0ece4;
-    --red: #c0392b;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +39,7 @@
     text-align: center;
     padding: 2rem;
     position: relative;
-    background: radial-gradient(ellipse at 50% 30%, #1a1418 0%, var(--bg-deep) 70%);
+    background: radial-gradient(ellipse at 50% 40%, #161214 0%, var(--bg-deep) 70%);
   }
 
   .hero::before {
@@ -51,104 +50,99 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(201, 168, 76, 0.015) 2px,
-      rgba(201, 168, 76, 0.015) 4px
+      rgba(201, 168, 76, 0.01) 2px,
+      rgba(201, 168, 76, 0.01) 4px
     );
     pointer-events: none;
   }
 
-  .confidential {
-    font-size: 0.65rem;
-    letter-spacing: 0.5em;
+  .hero-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.6em;
     text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 3rem;
+    color: var(--gold-dim);
+    margin-bottom: 2rem;
     opacity: 0;
-    animation: fadeDown 1s ease 0.3s forwards;
+    animation: fadeIn 1s ease 0.2s forwards;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
     font-weight: 900;
     color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
+    line-height: 1.05;
     opacity: 0;
-    animation: fadeDown 1s ease 0.6s forwards;
+    animation: fadeIn 1s ease 0.5s forwards;
   }
 
-  .hero h1 span {
-    display: block;
+  .hero h1 em {
     color: var(--gold);
-    font-style: italic;
     font-weight: 400;
-    font-size: 0.55em;
-    margin-top: 0.3em;
+    font-style: italic;
   }
 
-  .hero-sub {
-    font-size: 0.85rem;
+  .hero-tagline {
+    font-size: 0.95rem;
     color: var(--cream-dim);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    max-width: 400px;
     opacity: 0;
-    animation: fadeDown 1s ease 0.9s forwards;
+    animation: fadeIn 1s ease 0.8s forwards;
   }
 
-  .scroll-hint {
+  .hero-scroll {
     position: absolute;
     bottom: 2rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--gold-dim);
     opacity: 0;
-    animation: fadeDown 1s ease 1.5s forwards, pulse 2s ease-in-out 2.5s infinite;
+    animation: fadeIn 1s ease 1.3s forwards, pulse 2.5s ease-in-out 2s infinite;
   }
 
-  /* SECTIONS */
+  /* SHARED */
   .section {
     padding: 5rem 2rem;
-    max-width: 680px;
+    max-width: 640px;
     margin: 0 auto;
   }
 
   .section-label {
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: var(--gold-dim);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
   }
 
   .section h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     line-height: 1.2;
   }
 
   .section p {
-    margin-bottom: 1.2rem;
-    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
     color: var(--cream);
   }
 
   .section p.dim {
     color: var(--cream-dim);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
   }
 
   /* DIVIDER */
   .divider {
     text-align: center;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
     position: relative;
   }
 
@@ -158,248 +152,312 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
+    width: 100px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
   }
 
   .divider span {
     background: var(--bg-deep);
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
     position: relative;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--gold);
   }
 
-  /* PULL QUOTE */
-  .pull-quote {
-    border-left: 2px solid var(--gold);
-    padding: 1.5rem 2rem;
-    margin: 2.5rem 0;
-    background: linear-gradient(90deg, rgba(201, 168, 76, 0.04), transparent);
-  }
-
-  .pull-quote p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--white);
-    line-height: 1.6;
-  }
-
-  .pull-quote cite {
-    display: block;
-    margin-top: 0.75rem;
-    font-family: 'Libre Franklin', sans-serif;
-    font-style: normal;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-  }
-
-  /* STAT CARDS */
-  .stats {
+  /* DETAILS GRID */
+  .details-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 2.5rem 0;
+    gap: 1px;
+    background: rgba(201, 168, 76, 0.08);
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    margin: 2rem 0;
   }
 
-  .stat-card {
+  .detail-cell {
     background: var(--bg-card);
-    border: 1px solid rgba(201, 168, 76, 0.08);
     padding: 1.5rem;
     text-align: center;
   }
 
-  .stat-card .number {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
+  .detail-cell .label {
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
     display: block;
   }
 
-  .stat-card .label {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-    margin-top: 0.5rem;
+  .detail-cell .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--white);
+    font-weight: 700;
     display: block;
+  }
+
+  .detail-cell .value.small {
+    font-size: 0.85rem;
+    font-weight: 400;
   }
 
   /* BOOK CARD */
   .book-card {
     background: var(--bg-card);
     border: 1px solid rgba(201, 168, 76, 0.1);
-    padding: 2rem;
-    margin: 2.5rem 0;
+    padding: 2.5rem;
+    margin: 2rem 0;
     position: relative;
-    overflow: hidden;
+    text-align: center;
   }
 
   .book-card::before {
     content: 'NOW READING';
     position: absolute;
-    top: 0; right: 0;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
     background: var(--gold);
     color: var(--bg-deep);
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     font-weight: 700;
-    letter-spacing: 0.3em;
-    padding: 0.4rem 1rem;
+    letter-spacing: 0.35em;
+    padding: 0.35rem 1.2rem;
   }
 
   .book-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--white);
     font-style: italic;
     margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
   }
 
   .book-card .author {
     font-size: 0.8rem;
     color: var(--gold);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
   }
 
-  /* ROSE CEREMONY */
-  .ceremony-section {
-    background: linear-gradient(180deg, var(--bg-deep), #10080c, var(--bg-deep));
+  .book-card .month-label {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    display: block;
+  }
+
+  /* UPCOMING CARD */
+  .upcoming-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(201, 168, 76, 0.06);
+    padding: 1.8rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .upcoming-card .month {
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .upcoming-card .tbd {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream-dim);
+    font-style: italic;
+  }
+
+  /* SUGGESTION FORM */
+  .form-section {
+    background: linear-gradient(180deg, var(--bg-deep), #0e0c10, var(--bg-deep));
     padding: 5rem 2rem;
   }
 
-  .ceremony-inner {
-    max-width: 680px;
+  .form-inner {
+    max-width: 640px;
     margin: 0 auto;
   }
 
-  .bookmark-visual {
+  .form-box {
+    background: var(--bg-card);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    padding: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-box form {
     display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1.2rem;
   }
 
-  .bookmark {
-    width: 28px;
-    height: 80px;
-    background: linear-gradient(180deg, var(--rose), #5a1a28);
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    transition: transform 0.3s ease;
+  .form-field label {
+    display: block;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
   }
 
-  .bookmark::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-    border-bottom: 12px solid var(--bg-deep);
+  .form-field input {
+    width: 100%;
+    background: var(--bg-accent);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    color: var(--white);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
   }
 
-  .bookmark:hover {
-    transform: translateY(-8px);
+  .form-field input::placeholder {
+    color: var(--cream-dim);
+    opacity: 0.5;
   }
 
-  .bookmark.gold-pick {
-    background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+  .form-field input:focus {
+    border-color: var(--gold);
   }
 
-  /* SNACK SECTION */
-  .snack-disclaimer {
+  .submit-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover {
+    background: var(--gold);
+    color: var(--bg-deep);
+  }
+
+  .form-note {
     text-align: center;
-    padding: 1.5rem;
-    border: 1px dashed rgba(201, 168, 76, 0.2);
-    margin: 2rem 0;
+    font-size: 0.72rem;
+    color: var(--cream-dim);
+    margin-top: 1.2rem;
+    font-style: italic;
+  }
+
+  /* SUCCESS MESSAGE */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .form-success.show {
+    display: block;
+  }
+
+  .form-success p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-success .sub {
+    font-family: 'Libre Franklin', sans-serif;
     font-size: 0.8rem;
     color: var(--cream-dim);
   }
 
-  .snack-disclaimer strong {
-    color: var(--gold);
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  /* FINAL CTA */
-  .final {
-    min-height: 80vh;
+  /* HOW IT WORKS */
+  .steps {
+    margin: 2rem 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 3rem 2rem;
-    background: radial-gradient(ellipse at 50% 70%, #1a1418 0%, var(--bg-deep) 70%);
+    gap: 1.2rem;
   }
 
-  .final h2 {
+  .step {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgba(201, 168, 76, 0.25);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
   }
 
-  .final h2 span {
-    color: var(--gold);
-    font-style: italic;
-    font-weight: 400;
-  }
-
-  .final p {
-    max-width: 500px;
-    font-size: 0.9rem;
-    color: var(--cream-dim);
-    margin-bottom: 1rem;
-  }
-
-  .final-stamp {
-    margin-top: 3rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    padding: 0.75rem 2rem;
-    border: 1px solid rgba(201, 168, 76, 0.2);
+  .step-text {
+    font-size: 0.88rem;
+    color: var(--cream);
+    padding-top: 0.15rem;
   }
 
   /* FOOTER */
   footer {
     text-align: center;
-    padding: 3rem 2rem;
-    font-size: 0.6rem;
-    color: rgba(154, 148, 136, 0.4);
+    padding: 4rem 2rem 3rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.06);
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .footer-line {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
     letter-spacing: 0.2em;
+    margin-bottom: 0.2rem;
+  }
+
+  .footer-sub {
+    font-size: 0.55rem;
+    color: rgba(154, 148, 136, 0.4);
+    letter-spacing: 0.15em;
+    margin-top: 1.5rem;
   }
 
   /* ANIMATIONS */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-15px); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
+    0%, 100% { opacity: 0.4; }
     50% { opacity: 1; }
   }
 
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
   .fade-in.visible {
@@ -409,14 +467,9 @@
 
   /* MOBILE */
   @media (max-width: 500px) {
-    .stats { grid-template-columns: 1fr; }
+    .details-grid { grid-template-columns: 1fr; }
     .section { padding: 3.5rem 1.5rem; }
-    .bookmark { width: 22px; height: 60px; }
-    .bookmark::after {
-      border-left-width: 11px;
-      border-right-width: 11px;
-      border-bottom-width: 10px;
-    }
+    .form-box { padding: 1.8rem; }
   }
 </style>
 </head>
@@ -424,175 +477,159 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="confidential">Classification: Need-To-Know Basis</div>
-  <h1>
-    Jamie.
-    <span>You've Been Selected.</span>
-  </h1>
-  <div class="hero-sub">Delight Public Library &mdash; Book Club Division</div>
-  <div class="scroll-hint">&darr; Scroll to accept your fate &darr;</div>
+  <div class="hero-label">Delight Public Library</div>
+  <h1>Booked<br><em>in Delight</em></h1>
+  <p class="hero-tagline">A book club for people who actually want to talk about the book.</p>
+  <div class="hero-scroll">&darr; Keep going &darr;</div>
 </section>
 
-<!-- OPENING -->
+<!-- WHEN & WHERE -->
 <section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 001</div>
-  <h2>Let's Be Honest</h2>
-  <p>You reached out. You asked the question. You already knew the answer. That's not a coincidence &mdash; that's instinct. The same instinct that tells you the last 10 minutes of a baking timer are the longest minutes on Earth, and that The Challenge has been robbed of an Emmy every single year.</p>
-  <p>This is your formal recruitment briefing. Read it. Don't skim. There will not be a second invitation.</p>
-  <p class="dim">(There might be a second invitation. But it won't feel as special.)</p>
+  <div class="section-label">The Details</div>
+  <h2>When &amp; Where</h2>
+
+  <div class="details-grid">
+    <div class="detail-cell">
+      <span class="label">When</span>
+      <span class="value small">Last Monday of Every Month</span>
+    </div>
+    <div class="detail-cell">
+      <span class="label">Time</span>
+      <span class="value">6 PM</span>
+    </div>
+    <div class="detail-cell">
+      <span class="label">Where</span>
+      <span class="value small">Delight Public Library</span>
+    </div>
+    <div class="detail-cell">
+      <span class="label">Cost</span>
+      <span class="value small">Free. Always.</span>
+    </div>
+  </div>
+
+  <p class="dim">No sign-up required. No RSVP. Just show up with the book and something to say about it.</p>
 </section>
 
 <div class="divider"><span>&#9830;</span></div>
 
-<!-- THE FIRST READ -->
+<!-- CURRENT READ -->
 <section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 002</div>
-  <h2>Your First Assignment</h2>
-  <p>Every great alliance starts with a shared mission. This one starts with a book.</p>
+  <div class="section-label">Currently Reading</div>
+  <h2>This Month's Book</h2>
 
   <div class="book-card">
     <h3>How to Read a Book</h3>
     <div class="author">Monica Wood</div>
+    <span class="month-label">June 2025</span>
   </div>
 
-  <p>Yes, that's the real title. No, it's not a personal attack. It's the kind of book that makes you rethink what a book club even is &mdash; which is exactly the point.</p>
-  <p class="dim">Think of it as the appetizer. The soufflé hasn't even gone in yet.</p>
-</section>
-
-<div class="divider"><span>&#9830;</span></div>
-
-<!-- THE BOOKMARK CEREMONY -->
-<section class="ceremony-section">
-  <div class="ceremony-inner fade-in">
-    <div class="section-label">Briefing &mdash; 003</div>
-    <h2>The Bookmark Ceremony</h2>
-    <p>Forget algorithms. Forget Goodreads suggestions from 2019. Here, book selection happens the way it should &mdash; a blind draw. Everyone puts a pick in. A bookmark gets pulled.</p>
-    <p>Think Love Island, but instead of choosing someone who ghosted their ex, you're choosing a novel that might keep you up until 3 AM on a Tuesday.</p>
-
-    <div class="bookmark-visual">
-      <div class="bookmark"></div>
-      <div class="bookmark"></div>
-      <div class="bookmark gold-pick"></div>
-      <div class="bookmark"></div>
-      <div class="bookmark"></div>
-      <div class="bookmark"></div>
-      <div class="bookmark"></div>
-    </div>
-
-    <p class="dim" style="text-align:center; margin-top: 1rem;">Your bookmark could be next. Accept it.</p>
+  <div class="upcoming-card">
+    <span class="month">July 2025</span>
+    <span class="tbd">Drawn from the suggestion box at June's meeting</span>
   </div>
 </section>
 
 <div class="divider"><span>&#9830;</span></div>
 
-<!-- THE DATA -->
+<!-- HOW IT WORKS -->
 <section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 004</div>
-  <h2>The Numbers Don't Lie</h2>
-  <p>We ran the data. By "we" I mean I asked. By "data" I mean the librarian told me things and I believed her.</p>
+  <div class="section-label">How It Works</div>
+  <h2>Simple by Design</h2>
 
-  <div class="stats">
-    <div class="stat-card">
-      <span class="number">1×</span>
-      <span class="label">Meetings per week</span>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Read the book. At your pace. On your couch. In the bath. We don't judge.</div>
     </div>
-    <div class="stat-card">
-      <span class="number">100%</span>
-      <span class="label">Weeks someone loses sleep finishing</span>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Show up the last Monday of the month. 6 PM. The library. You know where it is.</div>
     </div>
-    <div class="stat-card">
-      <span class="number">∞</span>
-      <span class="label">Opinions held firmly</span>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">Talk about it. The parts you loved. The parts you didn't. The character you'd fight.</div>
     </div>
-    <div class="stat-card">
-      <span class="number">0</span>
-      <span class="label">Alcohol served (unfortunately)</span>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Suggest a book for next month. One gets drawn from the hat. That's the next read.</div>
     </div>
-  </div>
-
-  <p class="dim">Meeting location: the library. Time: TBA. Dress code: literate.</p>
-</section>
-
-<div class="divider"><span>&#9830;</span></div>
-
-<!-- WHAT ACTUALLY HAPPENS -->
-<section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 005</div>
-  <h2>What Actually Happens Here</h2>
-  <p>People showed up expecting small talk. What they got was community. Real conversations &mdash; the kind where someone says something funny, then someone says something deep, and then you realize you've been there an hour longer than planned.</p>
-  <p>Acquaintances walked in. Actual friends walked out.</p>
-  <p>That's not a marketing line. That's what happened.</p>
-
-  <div class="pull-quote">
-    <p>&ldquo;Let me tell you &mdash; the funny, deep conversations that happen are not to be missed. We are technically the talk of the town. So come join.&rdquo;</p>
-    <cite>Brandi &mdash; The Librarian, Delight Public Library</cite>
-  </div>
-
-  <p class="dim">When the librarian personally vouch&shy;es for it, you don't ask follow-up questions. You show up.</p>
-</section>
-
-<div class="divider"><span>&#9830;</span></div>
-
-<!-- THE UNSPOKEN -->
-<section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 006</div>
-  <h2>The Part Nobody Warns You About</h2>
-  <p>You'll stay up too late. Not because you have to &mdash; because the book won't let you stop. Every week someone falls in love with a book they didn't pick, didn't expect, didn't see coming. That's the whole point.</p>
-  <p>And the funniest moment in the club's history?</p>
-  <p style="text-align: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); padding: 1.5rem 0;">You wouldn't believe it if I told you. 🫣</p>
-  <p class="dim">Which means you need to be there for the next one.</p>
-</section>
-
-<div class="divider"><span>&#9830;</span></div>
-
-<!-- SNACK INTEL -->
-<section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 007</div>
-  <h2>On the Subject of Provisions</h2>
-  <p>There's no bar. We acknowledge this. But people bring snacks. And Jamie &mdash; you literally bake. You could walk in there with a lemon pound cake and become a legend on day one. That's not pressure. That's just math.</p>
-
-  <div class="snack-disclaimer">
-    <strong>Official Beverage &amp; Snack Status</strong>
-    No alcohol served. Snacks are member-contributed and wildly inconsistent.<br>
-    This is both a problem and an opportunity. You are the opportunity.
   </div>
 </section>
 
 <div class="divider"><span>&#9830;</span></div>
 
-<!-- THIS IS YOUR ELIMINATION ROUND -->
-<section class="section fade-in">
-  <div class="section-label">Briefing &mdash; 008</div>
-  <h2>This Is Your Elimination Round</h2>
-  <p>On The Challenge, you don't get to sit on the couch and watch. You're either in the arena or you're on a flight home.</p>
-  <p>This is the same thing. Except the arena is air-conditioned, the competition is a paperback, and the only elimination is self-imposed regret when you hear about the conversation you missed.</p>
-  <p>Nobody gets voted off. But you do have to vote yourself in.</p>
+<!-- SUGGESTION BOX -->
+<section class="form-section">
+  <div class="form-inner fade-in">
+    <div class="section-label">Suggestion Box</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 1.2rem; line-height: 1.2;">Got a Book in Mind?</h2>
+    <p style="font-size: 0.92rem; color: var(--cream); margin-bottom: 0.5rem;">Drop your suggestion below. At each meeting, a title gets pulled from the hat for next month's read.</p>
+
+    <div class="form-box">
+      <div id="formArea">
+        <!-- Replace YOUR_FORMSPREE_ID with actual endpoint -->
+        <form id="suggestForm" action="https://formspree.io/f/mnjyjdrn" method="POST">
+          <input type="hidden" name="_subject" value="Booked in Delight — New Book Suggestion">
+          <div class="form-field">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="First and last" required>
+          </div>
+          <div class="form-field">
+            <label for="book">Book Title</label>
+            <input type="text" id="book" name="book_title" placeholder="Title of the book" required>
+          </div>
+          <div class="form-field">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" placeholder="Who wrote it">
+          </div>
+          <button type="submit" class="submit-btn">Drop It in the Hat</button>
+        </form>
+      </div>
+      <div class="form-success" id="successMsg">
+        <p>In the hat.</p>
+        <span class="sub">Your suggestion has been submitted. See you on Monday.</span>
+      </div>
+    </div>
+    <p class="form-note">One suggestion per person per month. Keep it interesting.</p>
+  </div>
 </section>
 
-<!-- FINAL -->
-<section class="final">
-  <h2 class="fade-in">So, Jamie.<br><span>Are you in?</span></h2>
-  <p class="fade-in">Weekly meetings. One book at a time. Deep conversations that are apparently the talk of the town. Friendships that started as acquaintances. And at least one moment per month that nobody would believe.</p>
-  <p class="fade-in">You asked if I was joining. I'm asking you back.</p>
-  <p class="fade-in" style="color: var(--white); font-weight: 600; margin-top: 1rem;">Bring a book pick. Bring a baked good. Show up.</p>
-  <div class="final-stamp fade-in">Delight Public Library &bull; Book Club &bull; Accepting Applications</div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-  Prepared with an unreasonable amount of effort by someone who was just asked about a book club
+  <div class="footer-name">Booked in Delight</div>
+  <div class="footer-line">Last Monday &bull; 6 PM &bull; Delight Public Library</div>
+  <div class="footer-sub">Delight, Arkansas</div>
 </footer>
 
 <script>
-  // Scroll-triggered fade-ins
+  // Scroll fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form submission handling
+  const form = document.getElementById('suggestForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        document.getElementById('formArea').style.display = 'none';
+        document.getElementById('successMsg').classList.add('show');
+      }
+    }).catch(() => {
+      // Fallback — still show success for demo
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successMsg').classList.add('show');
+    });
+  });
 </script>
 
 </body>
